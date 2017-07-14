@@ -68,7 +68,6 @@ module.exports = function hhmarker(dispatch) {
 		if(event.zone == HARROWHOLD){
 			inDung = true;
 		}
-		return true;
 	});
 	
 	dispatch.hook('C_LOAD_TOPO_FIN', 1, (event) => {

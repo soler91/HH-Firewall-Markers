@@ -3,11 +3,11 @@ const Command = require('command'),
 		HARROWHOLD = 9950,
 		MARKER = 1,
 		COORDS = [
-		{x:-7364,y:-83180,z:1},
-		{x:-8946,y:-84887,z:1},
-		{x:-9309,y:-83946,z:1},
-		{x:-6667,y:-85440,z:1},
-		{x:-6411,y:-84057,z:1}];
+        {x:-7364,y:-83180,z:1},  // Front (head)
+        {x:-8946,y:-84887,z:1},  // Right-Back leg
+        {x:-8620,y:-83531,z:1},  // Right-Front leg
+        {x:-6667,y:-85440,z:1},  // Left-Back leg
+        {x:-6411,y:-84057,z:1}]; // Left-Front leg
 
 module.exports = function hhmarker(dispatch) {
 	const command = Command(dispatch)

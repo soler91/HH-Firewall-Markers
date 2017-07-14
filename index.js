@@ -47,7 +47,7 @@ module.exports = function hhmarker(dispatch) {
 	}
 	
 	function SpawnThing(position,item){
-		dispatch.toClient('S_SPAWN_COLLECTION', 1, {
+		dispatch.toClient('S_SPAWN_WORKOBJECT', 1, {
 			uid : uid,
 			item : item,
 			amount : 1,

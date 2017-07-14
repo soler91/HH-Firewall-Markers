@@ -12,6 +12,7 @@ const Command = require('command'),
 module.exports = function hhmarker(dispatch) {
 	const command = Command(dispatch)
 	let enabled = true,
+		inDung = false,
 		uid = 999999999,
 		markers = [];
 	
@@ -29,10 +30,17 @@ module.exports = function hhmarker(dispatch) {
 		}
 	});
 	
-	dispatch.hook('S_LOAD_TOPO', 1, (event) => {
+	dispatch.hook('S_LOAD_TOPO', 1, {filter: {fake: null}}, (event) => {
+		ClearSpawns();
 		if(event.zone == HARROWHOLD){
+			inDung = true;
+		}
+	});
+	
+	dispatch.hook('C_LOAD_TOPO_FIN', 1, (event) => {
+		if(inDung){
 			for(let i in COORDS){
-				SpawnThing(COORDS[i],MARKER);
+			SpawnThing(COORDS[i],MARKER);
 			}
 		}
 	});
@@ -50,7 +58,6 @@ module.exports = function hhmarker(dispatch) {
 		dispatch.toClient('S_SPAWN_WORKOBJECT', 1, {
 			uid : uid,
 			item : item,
-			amount : 1,
 			x : position.x,
 			y : position.y,
 			z : position.z,

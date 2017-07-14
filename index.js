@@ -65,7 +65,6 @@ module.exports = function hhmarker(dispatch) {
 	
 	dispatch.hook('S_LOAD_TOPO', 1, (event) => {
 		ClearSpawns();
-		event.zone = HARROWHOLD;
 		if(event.zone == HARROWHOLD){
 			inDung = true;
 		}

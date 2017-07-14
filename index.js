@@ -1,7 +1,7 @@
 //Thanks to Riseno and Ethical for coordinates, testing and stuff.
 const Command = require('command'),
 		HARROWHOLD = 9950,
-		MARKER = 81801,
+		MARKER = 1,
 		COORDS = [
 		{x:-7364,y:-83180,z:1},
 		{x:-8946,y:-84887,z:1},
@@ -14,11 +14,13 @@ module.exports = function hhmarker(dispatch) {
 	let enabled = true,
 		inDung = false,
 		uid = 999999999,
+		name = '',
 		markers = [];
 	
 	command.add('hhmarker', () => {
 		if(enabled){
 			enabled = false;
+			ClearSpawns()
 			command.message('HH-Marker cage module toggled off');
 		}
 		else if(!enabled){
@@ -30,7 +32,11 @@ module.exports = function hhmarker(dispatch) {
 		}
 	});
 	
-	dispatch.hook('S_LOAD_TOPO', 1, {filter: {fake: null}}, (event) => {
+	dispatch.hook('S_LOGIN', 2, (event) => {
+		name = event.name;
+	});
+	
+	dispatch.hook('S_LOAD_TOPO', 1, (event) => {
 		ClearSpawns();
 		if(event.zone == HARROWHOLD){
 			inDung = true;
@@ -55,22 +61,23 @@ module.exports = function hhmarker(dispatch) {
 	}
 	
 	function SpawnThing(position,item){
-		dispatch.toClient('S_SPAWN_WORKOBJECT', 1, {
+		dispatch.toClient('S_SPAWN_BUILD_OBJECT', 1, {
 			uid : uid,
-			item : item,
+			itemId : item,
 			x : position.x,
 			y : position.y,
 			z : position.z,
-			unk1 : 0,
-			unk2 : 2,
-			unk3 : 0
+			w : Math.floor((Math.random() * -30000) + 1),
+			unk : 0,
+			ownerName : name,
+			message : ''
 		});
 		markers.push(uid);
 		uid--;
 	}
 	
 	function Despawn(uid){
-	dispatch.toClient('S_DESPAWN_WORKOBJECT', 1, {
+	dispatch.toClient('S_DESPAWN_BUILD_OBJECT', 1, {
 			uid : uid,
 			unk : 0
 		});

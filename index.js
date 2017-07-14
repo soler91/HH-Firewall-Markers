@@ -1,5 +1,6 @@
 //Thanks to Riseno and Ethical for coordinates, testing and stuff.
-const Command = require('command'),
+const	{protocol} = require('tera-data-parser'),
+		Command = require('command'),		
 		HARROWHOLD = 9950,
 		MARKER = 1,
 		COORDS = [
@@ -8,6 +9,31 @@ const Command = require('command'),
         {x:-8620,y:-83531,z:1},  // Right-Front leg
         {x:-6667,y:-85440,z:1},  // Left-Back leg
         {x:-6411,y:-84057,z:1}]; // Left-Front leg
+
+// Temporal packet def until tera-data updates
+if (!protocol.messages.has('S_SPAWN_BUILD_OBJECT')) {
+  const packet = [
+    ['ownerName', 'offset'],
+    ['message', 'offset'],
+    ['uid', 'uint64'],
+    ['itemId', 'uint32'],
+    ['x', 'float'],
+    ['y', 'float'],
+    ['z', 'float'],
+    ['w', 'int16'],
+    ['unk', 'uint16'],
+    ['ownerName', 'string'],
+    ['message', 'string']];
+  packet.type = 'root';
+  protocol.messages.set('S_SPAWN_BUILD_OBJECT', new Map().set(1, packet));
+}
+if (!protocol.messages.has('S_DESPAWN_BUILD_OBJECT')) {
+  const packet = [
+    ['uid', 'uint64'],
+    ['unk', 'byte']];
+  packet.type = 'root';
+  protocol.messages.set('S_DESPAWN_BUILD_OBJECT', new Map().set(1, packet));
+}
 
 module.exports = function hhmarker(dispatch) {
 	const command = Command(dispatch)
@@ -39,9 +65,11 @@ module.exports = function hhmarker(dispatch) {
 	
 	dispatch.hook('S_LOAD_TOPO', 1, (event) => {
 		ClearSpawns();
+		event.zone = HARROWHOLD;
 		if(event.zone == HARROWHOLD){
 			inDung = true;
 		}
+		return true;
 	});
 	
 	dispatch.hook('C_LOAD_TOPO_FIN', 1, (event) => {

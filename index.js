@@ -25,6 +25,7 @@ module.exports = function hhmarker(dispatch) {
 		}
 		else if(!enabled){
 			enabled = true;
+			SpawnMarkers()
 			command.message('HH-Marker cage module toggled on');
 		}
 		else{
@@ -44,12 +45,16 @@ module.exports = function hhmarker(dispatch) {
 	});
 	
 	dispatch.hook('C_LOAD_TOPO_FIN', 1, (event) => {
+		SpawnMarkers()
+	});
+	
+	function SpawnMarkers(){
 		if(inDung){
 			for(let i in COORDS){
 			SpawnThing(COORDS[i],MARKER);
 			}
 		}
-	});
+	}
 	
 	function ClearSpawns(){
 		if(markers){

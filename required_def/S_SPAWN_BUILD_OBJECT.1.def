@@ -1,0 +1,11 @@
+offset ownerName
+offset message
+uint64 uid
+uint32 itemId #sign of the day, half day etc
+float x
+float y
+float z
+int16 w
+uint16 unk
+string ownerName
+string message

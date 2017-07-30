@@ -4,13 +4,13 @@ const	{protocol} = require('tera-data-parser'),
 		HARROWHOLD = 9950,
 		MARKER = 1,
 		COORDS = [
-        {x:-7364,y:-83180,z:1},  // Front (head)
-        {x:-8946,y:-84887,z:1},  // Right-Back leg
+        	{x:-7364,y:-83180,z:1},  // Front (head)
+        	{x:-8946,y:-84887,z:1},  // Right-Back leg
 		{x:-8686,y:-85301,z:1},  // Right-Back leg 2
-        {x:-8620,y:-83531,z:1},  // Right-Front leg
-        {x:-6667,y:-85440,z:1},  // Left-Back leg
+        	{x:-8620,y:-83531,z:1},  // Right-Front leg
+        	{x:-6667,y:-85440,z:1},  // Left-Back leg
 		{x:-7403,y:-85814,z:1},  // Left-Back leg 2
-        {x:-6411,y:-84057,z:1}, // Left-Front leg
+        	{x:-6411,y:-84057,z:1}, // Left-Front leg
 		{x:-6381,y:-84809,z:1}, // Left-Middle
 		{x:-8985,y:-84054,z:1}]; // Right-Middle
 
@@ -71,8 +71,7 @@ module.exports = function hhmarker(dispatch) {
 		ClearSpawns();
 		if(event.zone == HARROWHOLD){
 			inDung = true;
-		}
-		return true;
+		}	
 	});
 	
 	dispatch.hook('C_LOAD_TOPO_FIN', 1, (event) => {

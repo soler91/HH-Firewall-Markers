@@ -71,7 +71,7 @@ module.exports = function hhmarker(dispatch) {
 		ClearSpawns();
 		if(event.zone == HARROWHOLD){
 			inDung = true;
-		}	
+		}
 	});
 	
 	dispatch.hook('C_LOAD_TOPO_FIN', 1, (event) => {

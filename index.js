@@ -12,7 +12,7 @@ const	{protocol} = require('tera-data-parser'),
 		{x:-7403,y:-85814,z:1},  // Left-Back leg 2
         	{x:-6411,y:-84057,z:1}, // Left-Front leg
 		{x:-6353,y:-84872,z:1}, // Left-Middle
-		{x:-8985,y:-84054,z:1}]; // Right-Middle
+		{x:-8908,y:-84001,z:1}]; // Right-Middle
 
 // Temporal packet def until tera-data updates
 if (!protocol.messages.has('S_SPAWN_BUILD_OBJECT')) {

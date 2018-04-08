@@ -55,6 +55,44 @@ function HHMarkers(dispatch){
         SpawnMarkers()
     });
 }
+
+function SpawnMarkers(){
+    if(inDung){
+        for(let i in COORDS){
+        SpawnThing(COORDS[i],MARKER);
+        }
+    }
+}
+    
+function ClearSpawns(){
+    if(markers){
+        for(let i in markers){
+            Despawn(markers[i]);
+        }
+        markers = [];
+    }
+}
+    
+function SpawnThing(position,item){
+    dispatch.toClient('S_SPAWN_BUILD_OBJECT', 2, {
+        gameId : uid,
+        itemId : item,
+        loc : new Vec3(position),
+        w : Math.random()*Math.PI*2,
+        unk : 0,
+        ownerName : name,
+        message : ''
+    });
+    markers.push(uid);
+    uid--;
+}
+    
+function Despawn(uid){
+    dispatch.toClient('S_DESPAWN_BUILD_OBJECT', 2, {
+            gameId : uid,
+            unk : 0
+        });
+}
 module.exports = function markerWrapper(dispatch) {
     if(!dispatch.base.protocolVersion){
         dispatch.hook('C_CHECK_VERSION', 1, (event) => { HHMarkers(dispatch); })
@@ -62,43 +100,4 @@ module.exports = function markerWrapper(dispatch) {
     else{
     HHMarkers(dispatch)
     }
-
-    function SpawnMarkers(){
-        if(inDung){
-            for(let i in COORDS){
-            SpawnThing(COORDS[i],MARKER);
-            }
-        }
-    }
-    
-    function ClearSpawns(){
-        if(markers){
-            for(let i in markers){
-                Despawn(markers[i]);
-            }
-            markers = [];
-        }
-    }
-    
-    function SpawnThing(position,item){
-        dispatch.toClient('S_SPAWN_BUILD_OBJECT', 2, {
-            gameId : uid,
-            itemId : item,
-            loc : new Vec3(position),
-            w : Math.random()*Math.PI*2,
-            unk : 0,
-            ownerName : name,
-            message : ''
-        });
-        markers.push(uid);
-        uid--;
-    }
-    
-    function Despawn(uid){
-    dispatch.toClient('S_DESPAWN_BUILD_OBJECT', 2, {
-            gameId : uid,
-            unk : 0
-        });
-    }
-
 }

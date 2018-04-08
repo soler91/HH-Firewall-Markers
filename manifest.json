@@ -1,0 +1,14 @@
+{
+	"files": {
+		"index.js": "660c63505aaa37624438067bd8c8d4245c392de8e2573a27b3c37d50f02db1bd",
+		"module.json": "aaa0c87f9853f1baa90885b0f9d495eeb5b231dabd30662d93a39a27bd23cc06"
+	},
+	
+	"defs": {
+		"C_LOAD_TOPO_FIN": 1,
+		"S_LOAD_TOPO": 3,
+		"S_LOGIN": [9, 10],
+		"S_SPAWN_BUILD_OBJECT": 2,
+		"S_DESPAWN_BUILD_OBJECT": 2
+	}
+}

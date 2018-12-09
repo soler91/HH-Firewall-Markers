@@ -1,14 +1,14 @@
 {
 	"files": {
-		"index.js": "c555617fcd95665ddce0d64f22d09cfe5aa02ba07acb046381e3d094fd3eaaaf",
-		"module.json": "aaa0c87f9853f1baa90885b0f9d495eeb5b231dabd30662d93a39a27bd23cc06"
+		"README.md": "003da41e90b287146e65b4846c2b4fa6619f5cffd0760406fe700c56178a52cd",
+		"index.js": "7af722e3967a5811547a66577d0d21e0ec1d2824ea19ddf0af9e67623858ad4f",
+		"module.json": "dd910768335a1925d04ccd63139d00c16e817077c86c1aa061a1b2bbcb1a6e13"
 	},
-	
 	"defs": {
-		"C_LOAD_TOPO_FIN": 1,
+		"C_LOAD_TOPO_FIN": "raw",
+		"S_DESPAWN_BUILD_OBJECT": 2,
 		"S_LOAD_TOPO": 3,
 		"S_LOGIN": 10,
-		"S_SPAWN_BUILD_OBJECT": 2,
-		"S_DESPAWN_BUILD_OBJECT": 2
+		"S_SPAWN_BUILD_OBJECT": 2
 	}
 }

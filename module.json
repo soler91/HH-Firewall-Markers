@@ -1,3 +1,7 @@
 {
-    "servers":["https://raw.githubusercontent.com/soler91/HH-Firewall-Markers/master/"]
+    "disableAutoUpdate": false,
+    "name": "HH Fire Markers",
+    "author": "Fruit",
+    "description": "Spawn signs on the safe spots in HarrowHold phase 4.",
+    "servers": ["https://raw.githubusercontent.com/soler91/HH-Firewall-Markers/master/"]
 }
